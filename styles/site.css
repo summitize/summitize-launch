@@ -327,8 +327,9 @@ main {
   border-radius: 50%;
   color: #080705;
   font-family: var(--display);
-  font-size: 1.4rem;
+  font-size: 0.92rem;
   font-weight: 700;
+  letter-spacing: -0.05em;
   background: linear-gradient(135deg, var(--sky-strong) 0%, var(--coral-strong) 52%, var(--violet-strong) 100%);
   box-shadow: 0 0 0 1px rgba(185, 236, 255, 0.18), 0 10px 28px rgba(103, 215, 255, 0.18);
 }
@@ -1101,9 +1102,48 @@ main {
   margin-bottom: 1rem;
 }
 
+.demo-preview-thumb {
+  margin-bottom: 1.15rem;
+  padding: 0.85rem;
+  border-radius: calc(var(--radius-lg) - 6px);
+  border: 1px solid rgba(131, 125, 255, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(103, 215, 255, 0.14), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 156, 122, 0.12), transparent 22%),
+    linear-gradient(180deg, rgba(15, 21, 44, 0.92), rgba(10, 14, 30, 0.96));
+}
+
+.demo-preview-thumb img {
+  width: 100%;
+  border-radius: calc(var(--radius-lg) - 12px);
+  border: 1px solid rgba(131, 125, 255, 0.08);
+}
+
 .case-stats {
   margin-top: auto;
   padding-top: 1.2rem;
+}
+
+.card-actions {
+  margin-top: 1.2rem;
+}
+
+.price-amount {
+  margin: 1rem 0 0;
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--accent);
+}
+
+.price-intro {
+  margin-top: 0.75rem;
+}
+
+.pricing-note {
+  margin: 1.4rem 0 0;
+  color: var(--muted);
 }
 
 .surface-dark {
@@ -1185,7 +1225,7 @@ main {
 }
 
 .footer-grid {
-  grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1.4fr repeat(2, minmax(0, 1fr));
 }
 
 .footer-shell .brand-name {
@@ -1423,6 +1463,14 @@ body[data-theme="light"] .mini-proof {
     radial-gradient(circle at top right, rgba(103, 215, 255, 0.08), transparent 24%),
     radial-gradient(circle at bottom left, rgba(255, 156, 122, 0.08), transparent 24%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 247, 255, 0.95));
+}
+
+body[data-theme="light"] .demo-preview-thumb {
+  border-color: rgba(109, 141, 205, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(103, 215, 255, 0.12), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 156, 122, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 247, 255, 0.94));
 }
 
 body[data-theme="light"] .hero-stage {

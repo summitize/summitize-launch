@@ -1,14 +1,13 @@
+const contactEmail = "hello@summitize.in";
+
 const navItems = [
-  { href: "index.html", label: "Home" },
-  { href: "services.html", label: "Services" },
-  { href: "process.html", label: "Process" },
-  { href: "portfolio.html", label: "Live Demo" },
-  { href: "about.html", label: "About" },
+  { href: "portfolio.html", label: "Demo" },
+  { href: "index.html#pricing", label: "Pricing" },
   { href: "contact.html", label: "Contact" }
 ];
 
 const whatsappHref = `https://wa.me/?text=${encodeURIComponent(
-  "Hi Summitize Ventures, I want an AI-powered website in 48 hours."
+  "Hi LaunchPilot by Summitize, I want to launch my website in 48 hours."
 )}`;
 
 const themeStorageKey = "summitize-theme";
@@ -46,22 +45,19 @@ const toggleTheme = () => {
 applyTheme(getInitialTheme());
 
 const footerColumns = [
-  { title: "Pages", links: navItems },
   {
-    title: "Offer",
+    title: "Links",
     links: [
-      { href: "services.html#launch-sprint", label: "AI website creation" },
-      { href: "portfolio.html", label: "Instant preview" },
-      { href: "process.html#timeline", label: "48-hour workflow" }
+      { href: "portfolio.html", label: "Demo" },
+      { href: "index.html#pricing", label: "Pricing" },
+      { href: "contact.html", label: "Contact" }
     ]
   },
   {
     title: "Connect",
     links: [
-      { href: "mailto:hello@summitizeventures.com", label: "hello@summitizeventures.com" },
-      { href: whatsappHref, label: "Chat on WhatsApp" },
-      { href: "contact.html#lead-form", label: "Project inquiry" },
-      { href: "about.html#principles", label: "How we work" }
+      { href: `mailto:${contactEmail}`, label: contactEmail },
+      { href: whatsappHref, label: "Chat on WhatsApp" }
     ]
   }
 ];
@@ -71,17 +67,32 @@ const currentPage = (() => {
   return path && path.length ? path : "index.html";
 })();
 
+const isCurrentNavItem = (item) => {
+  const [page, hash] = item.href.split("#");
+  const resolvedPage = page && page.length ? page : "index.html";
+
+  if (resolvedPage !== currentPage) {
+    return false;
+  }
+
+  if (!hash) {
+    return true;
+  }
+
+  return window.location.hash === `#${hash}`;
+};
+
 class SiteHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <a class="skip-link" href="#main-content">Skip to content</a>
       <header class="site-header">
         <div class="nav-shell">
-          <a class="brand" href="index.html" aria-label="Summitize Ventures home">
-            <span class="brand-mark">S</span>
+          <a class="brand" href="index.html" aria-label="LaunchPilot by Summitize home">
+            <span class="brand-mark">LP</span>
             <span class="brand-copy">
-              <span class="brand-name">Summitize Ventures</span>
-              <span class="brand-tag">AI-powered sites in 48 hours</span>
+              <span class="brand-name">LaunchPilot</span>
+              <span class="brand-tag">by Summitize</span>
             </span>
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,16 +100,13 @@ class SiteHeader extends HTMLElement {
           </button>
           <nav class="nav-links" aria-label="Primary navigation">
             ${navItems
-              .map((item) => `<a href="${item.href}" class="${currentPage === item.href ? "is-active" : ""}">${item.label}</a>`)
+              .map((item) => `<a href="${item.href}" class="${isCurrentNavItem(item) ? "is-active" : ""}">${item.label}</a>`)
               .join("")}
           </nav>
           <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch theme">
             <span class="theme-toggle-orb"></span>
             <span data-theme-label>Night</span>
           </button>
-          <div class="nav-cta">
-            <a class="button button-primary" href="contact.html#lead-form">Get My Website</a>
-          </div>
         </div>
       </header>
     `;
@@ -139,14 +147,14 @@ class SiteFooter extends HTMLElement {
             <div class="footer-grid">
               <div class="footer-column">
                 <div class="brand">
-                  <span class="brand-mark">S</span>
+                  <span class="brand-mark">LP</span>
                   <span class="brand-copy">
-                    <span class="brand-name">Summitize Ventures</span>
-                    <span class="brand-tag">AI-powered launch studio</span>
+                    <span class="brand-name">LaunchPilot</span>
+                    <span class="brand-tag">by Summitize</span>
                   </span>
                 </div>
                 <p style="margin-top: 1rem; max-width: 320px;">
-                  AI-first websites that don’t just exist &mdash; they convert. Summitize helps businesses launch modern websites in 48 hours with clearer messaging and stronger design.
+                  We help businesses, consultants, and startups launch their online presence fast using AI.
                 </p>
               </div>
               ${footerColumns
@@ -161,8 +169,8 @@ class SiteFooter extends HTMLElement {
                 .join("")}
             </div>
             <div class="footer-meta">
-              <span>&copy; <span data-year></span> Summitize Ventures</span>
-              <span>No tech skills needed. Just share your idea &mdash; we handle the rest.</span>
+              <span>&copy; <span data-year></span> Summitize</span>
+              <span>Get your website live in 48 hours.</span>
             </div>
           </div>
         </div>
@@ -211,13 +219,13 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
     const timeline = formData.get("timeline") || "";
     const details = formData.get("details") || "";
 
-    const subject = encodeURIComponent(`New Summitize inquiry from ${name || "a founder"}`);
+    const subject = encodeURIComponent(`New LaunchPilot inquiry from ${name || "a founder"}`);
     const body = encodeURIComponent(
       [
         `Name: ${name}`,
         `Email: ${email}`,
         `Business: ${business}`,
-        `Requested site type: ${siteType}`,
+        `Requested launch type: ${siteType}`,
         `Ideal launch window: ${timeline}`,
         "",
         "Project details:",
@@ -226,11 +234,11 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
     );
 
     if (status) {
-      status.textContent = "Your email draft is opening so you can send the inquiry directly to Summitize Ventures.";
+      status.textContent = "Your email draft is opening so you can send the inquiry directly to LaunchPilot by Summitize.";
       status.classList.add("is-visible");
     }
 
-    window.location.href = `mailto:hello@summitizeventures.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   });
 });
 
