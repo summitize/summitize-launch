@@ -54,7 +54,7 @@ class SiteHeader extends HTMLElement {
               .join("")}
           </nav>
           <div class="nav-cta">
-            <a class="button button-primary" href="contact.html#lead-form">Start your build</a>
+            <a class="button button-primary" href="contact.html#lead-form">Start your sprint</a>
           </div>
         </div>
       </header>
@@ -92,11 +92,11 @@ class SiteFooter extends HTMLElement {
                   <span class="brand-mark">S</span>
                   <span class="brand-copy">
                     <span class="brand-name">Summitize Ventures</span>
-                    <span class="brand-tag">Sharp launches for serious businesses</span>
+                    <span class="brand-tag">Sharper websites for serious businesses</span>
                   </span>
                 </div>
                 <p style="margin-top: 1rem; max-width: 320px;">
-                  We build premium-feeling websites in a focused 48-hour sprint so a business can show up with more confidence, edge, and credibility.
+                  We build polished launch-ready websites in a focused 48-hour sprint so a business can show up with better clarity, stronger visual confidence, and more momentum.
                 </p>
               </div>
               ${footerColumns

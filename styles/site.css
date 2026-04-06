@@ -484,6 +484,13 @@ main {
   align-items: stretch;
 }
 
+.media-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+  gap: 1.4rem;
+  align-items: center;
+}
+
 .hero-copy {
   display: flex;
   flex-direction: column;
@@ -706,6 +713,16 @@ main {
   border: 1px solid rgba(255, 230, 164, 0.12);
 }
 
+.hero-stage img {
+  position: absolute;
+  inset: 1rem;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  object-fit: cover;
+  border-radius: 28px;
+  opacity: 0.92;
+}
+
 .hero-stage::before {
   content: "";
   position: absolute;
@@ -769,6 +786,150 @@ main {
 .manifesto-grid {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
   align-items: start;
+}
+
+.visual-frame,
+.story-panel,
+.image-panel,
+.proof-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 230, 164, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(243, 211, 127, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(16, 16, 16, 0.96), rgba(8, 8, 8, 0.98));
+  box-shadow: var(--shadow-soft);
+}
+
+.visual-frame {
+  padding: 1rem;
+}
+
+.visual-frame img,
+.image-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius-xl) - 10px);
+  border: 1px solid rgba(255, 230, 164, 0.08);
+}
+
+.story-panel,
+.proof-panel {
+  padding: 1.45rem;
+}
+
+.proof-grid,
+.service-points,
+.faq-grid,
+.industry-grid,
+.mini-proof-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.proof-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-points,
+.faq-grid,
+.industry-grid,
+.mini-proof-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.service-point,
+.faq-item,
+.industry-card,
+.mini-proof {
+  position: relative;
+  overflow: hidden;
+  padding: 1.3rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.96), rgba(9, 9, 9, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.service-point h3,
+.faq-item h3,
+.industry-card h3,
+.mini-proof h3 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.06rem;
+  line-height: 1.2;
+}
+
+.service-point p,
+.faq-item p,
+.industry-card p,
+.mini-proof p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+}
+
+.section-label {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  color: var(--gold-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.metric-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.metric-strip span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted-strong);
+  background: rgba(15, 15, 15, 0.82);
+  font-size: 0.86rem;
+}
+
+.bullet-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1.2rem;
+  margin-top: 1rem;
+}
+
+.bullet-columns span {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--muted-strong);
+}
+
+.bullet-columns span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.75rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-strong), transparent);
+}
+
+.image-caption {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.compact-lead {
+  max-width: 560px;
 }
 
 .manifesto-panel {
@@ -1110,6 +1271,7 @@ main {
 
 @media (max-width: 1040px) {
   .hero-grid,
+  .media-split,
   .manifesto-grid,
   .offer-grid,
   .contact-grid,
@@ -1118,6 +1280,7 @@ main {
   }
 
   .grid-3,
+  .proof-grid,
   .portfolio-grid,
   .subtle-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1181,9 +1344,15 @@ main {
   .split-grid,
   .detail-grid,
   .grid-3,
+  .proof-grid,
   .portfolio-grid,
   .subtle-grid,
-  .field-grid {
+  .field-grid,
+  .service-points,
+  .faq-grid,
+  .industry-grid,
+  .mini-proof-grid,
+  .bullet-columns {
     grid-template-columns: 1fr;
   }
 
