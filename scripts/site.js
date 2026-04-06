@@ -89,11 +89,7 @@ class SiteHeader extends HTMLElement {
       <header class="site-header">
         <div class="nav-shell">
           <a class="brand" href="index.html" aria-label="LaunchPilot by Summitize home">
-            <span class="brand-mark">LP</span>
-            <span class="brand-copy">
-              <span class="brand-name">LaunchPilot</span>
-              <span class="brand-tag">by Summitize</span>
-            </span>
+            <img class="brand-logo" src="images/launchpilot-logo.png" alt="LaunchPilot by Summitize" />
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
             <span></span>
@@ -147,11 +143,7 @@ class SiteFooter extends HTMLElement {
             <div class="footer-grid">
               <div class="footer-column">
                 <div class="brand">
-                  <span class="brand-mark">LP</span>
-                  <span class="brand-copy">
-                    <span class="brand-name">LaunchPilot</span>
-                    <span class="brand-tag">by Summitize</span>
-                  </span>
+                  <img class="brand-logo" src="images/launchpilot-logo.png" alt="LaunchPilot by Summitize" />
                 </div>
                 <p style="margin-top: 1rem; max-width: 320px;">
                   We help businesses, consultants, and startups launch their online presence fast using AI.
