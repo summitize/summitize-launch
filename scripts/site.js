@@ -2,25 +2,64 @@ const navItems = [
   { href: "index.html", label: "Home" },
   { href: "services.html", label: "Services" },
   { href: "process.html", label: "Process" },
-  { href: "portfolio.html", label: "Work" },
+  { href: "portfolio.html", label: "Live Demo" },
   { href: "about.html", label: "About" },
   { href: "contact.html", label: "Contact" }
 ];
+
+const whatsappHref = `https://wa.me/?text=${encodeURIComponent(
+  "Hi Summitize Ventures, I want an AI-powered website in 48 hours."
+)}`;
+
+const themeStorageKey = "summitize-theme";
+
+const getInitialTheme = () => {
+  const storedTheme = window.localStorage.getItem(themeStorageKey);
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+};
+
+const applyTheme = (theme) => {
+  document.body.dataset.theme = theme;
+  document.documentElement.dataset.theme = theme;
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    const label = button.querySelector("[data-theme-label]");
+    const pressed = theme === "light";
+    button.setAttribute("aria-pressed", String(pressed));
+    button.setAttribute("aria-label", pressed ? "Switch to night mode" : "Switch to day mode");
+    if (label) {
+      label.textContent = pressed ? "Day" : "Night";
+    }
+  });
+};
+
+const toggleTheme = () => {
+  const nextTheme = document.body.dataset.theme === "light" ? "dark" : "light";
+  window.localStorage.setItem(themeStorageKey, nextTheme);
+  applyTheme(nextTheme);
+};
+
+applyTheme(getInitialTheme());
 
 const footerColumns = [
   { title: "Pages", links: navItems },
   {
     title: "Offer",
     links: [
-      { href: "services.html#launch-sprint", label: "48-hour sprint" },
-      { href: "services.html#deliverables", label: "Deliverables" },
-      { href: "process.html#timeline", label: "Build timeline" }
+      { href: "services.html#launch-sprint", label: "AI website creation" },
+      { href: "portfolio.html", label: "Instant preview" },
+      { href: "process.html#timeline", label: "48-hour workflow" }
     ]
   },
   {
     title: "Connect",
     links: [
       { href: "mailto:hello@summitizeventures.com", label: "hello@summitizeventures.com" },
+      { href: whatsappHref, label: "Chat on WhatsApp" },
       { href: "contact.html#lead-form", label: "Project inquiry" },
       { href: "about.html#principles", label: "How we work" }
     ]
@@ -42,7 +81,7 @@ class SiteHeader extends HTMLElement {
             <span class="brand-mark">S</span>
             <span class="brand-copy">
               <span class="brand-name">Summitize Ventures</span>
-              <span class="brand-tag">Premium sites in 48 hours</span>
+              <span class="brand-tag">AI-powered sites in 48 hours</span>
             </span>
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,8 +92,12 @@ class SiteHeader extends HTMLElement {
               .map((item) => `<a href="${item.href}" class="${currentPage === item.href ? "is-active" : ""}">${item.label}</a>`)
               .join("")}
           </nav>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch theme">
+            <span class="theme-toggle-orb"></span>
+            <span data-theme-label>Night</span>
+          </button>
           <div class="nav-cta">
-            <a class="button button-primary" href="contact.html#lead-form">Start your sprint</a>
+            <a class="button button-primary" href="contact.html#lead-form">Get My Website</a>
           </div>
         </div>
       </header>
@@ -62,6 +105,7 @@ class SiteHeader extends HTMLElement {
 
     const toggle = this.querySelector(".nav-toggle");
     const nav = this.querySelector(".nav-links");
+    const themeToggle = this.querySelector("[data-theme-toggle]");
 
     if (!toggle || !nav) return;
 
@@ -77,6 +121,12 @@ class SiteHeader extends HTMLElement {
         nav.classList.remove("is-open");
       });
     });
+
+    if (themeToggle) {
+      themeToggle.addEventListener("click", toggleTheme);
+    }
+
+    applyTheme(document.body.dataset.theme || getInitialTheme());
   }
 }
 
@@ -92,11 +142,11 @@ class SiteFooter extends HTMLElement {
                   <span class="brand-mark">S</span>
                   <span class="brand-copy">
                     <span class="brand-name">Summitize Ventures</span>
-                    <span class="brand-tag">Sharper websites for serious businesses</span>
+                    <span class="brand-tag">AI-powered launch studio</span>
                   </span>
                 </div>
                 <p style="margin-top: 1rem; max-width: 320px;">
-                  We build polished launch-ready websites in a focused 48-hour sprint so a business can show up with better clarity, stronger visual confidence, and more momentum.
+                  AI-first websites that don’t just exist &mdash; they convert. Summitize helps businesses launch modern websites in 48 hours with clearer messaging and stronger design.
                 </p>
               </div>
               ${footerColumns
@@ -112,7 +162,7 @@ class SiteFooter extends HTMLElement {
             </div>
             <div class="footer-meta">
               <span>&copy; <span data-year></span> Summitize Ventures</span>
-              <span>Designed for quick launches, simple edits, and future growth.</span>
+              <span>No tech skills needed. Just share your idea &mdash; we handle the rest.</span>
             </div>
           </div>
         </div>
@@ -182,4 +232,8 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
 
     window.location.href = `mailto:hello@summitizeventures.com?subject=${subject}&body=${body}`;
   });
+});
+
+document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
+  link.setAttribute("href", whatsappHref);
 });

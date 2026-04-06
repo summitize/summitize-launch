@@ -378,6 +378,54 @@ main {
   display: inline-flex;
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.52rem 0.82rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(10, 10, 10, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+}
+
+.theme-toggle-orb {
+  position: relative;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #ffe9a8 0%, #d79d36 100%);
+  box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(255, 231, 176, 0.18);
+}
+
+.theme-toggle-orb::after {
+  content: "";
+  position: absolute;
+  inset: 0.18rem;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(0);
+  transition: transform var(--transition);
+}
+
+.theme-toggle[aria-pressed="true"] .theme-toggle-orb {
+  background: linear-gradient(135deg, #9cf0ff 0%, #6f84ff 100%);
+}
+
+.theme-toggle[aria-pressed="true"] .theme-toggle-orb::after {
+  transform: scale(1);
+}
+
 .nav-toggle {
   position: relative;
   display: none;
@@ -1240,6 +1288,194 @@ main {
 
 .success-note.is-visible {
   display: block;
+}
+
+body[data-theme="light"] {
+  --text: #1a2740;
+  --muted: #5f6b7f;
+  --muted-strong: #33445d;
+  --line: rgba(43, 69, 111, 0.14);
+  --line-strong: rgba(43, 69, 111, 0.26);
+  --gold: #c38c2d;
+  --gold-strong: #dca544;
+  --accent: #18253d;
+  --shadow: 0 28px 70px rgba(33, 47, 72, 0.12);
+  --shadow-soft: 0 14px 30px rgba(33, 47, 72, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(98, 211, 255, 0.18), transparent 26%),
+    radial-gradient(circle at 86% 18%, rgba(255, 153, 121, 0.18), transparent 22%),
+    radial-gradient(circle at 72% 82%, rgba(216, 165, 74, 0.14), transparent 20%),
+    linear-gradient(180deg, #fbf7f0 0%, #f3ede4 42%, #f8f4ec 100%);
+}
+
+body[data-theme="light"]::before {
+  background:
+    linear-gradient(rgba(24, 39, 64, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 39, 64, 0.04) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), transparent 82%);
+}
+
+body[data-theme="light"]::after {
+  opacity: 0.78;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(122, 242, 225, 0.15) 0, transparent 22%),
+    radial-gradient(circle at 78% 36%, rgba(247, 99, 158, 0.12) 0, transparent 18%),
+    radial-gradient(circle at 78% 78%, rgba(103, 132, 255, 0.1) 0, transparent 18%);
+}
+
+body[data-theme="light"] .nav-shell {
+  background: rgba(255, 255, 255, 0.74);
+  border-color: rgba(43, 69, 111, 0.12);
+}
+
+body[data-theme="light"] .nav-links a:hover,
+body[data-theme="light"] .nav-links a:focus-visible,
+body[data-theme="light"] .nav-links a.is-active {
+  background: rgba(64, 179, 240, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(43, 69, 111, 0.08);
+}
+
+body[data-theme="light"] .theme-toggle,
+body[data-theme="light"] .nav-toggle {
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: none;
+}
+
+body[data-theme="light"] .button-secondary {
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(246, 240, 232, 0.94));
+  border-color: rgba(43, 69, 111, 0.16);
+}
+
+body[data-theme="light"] .pill,
+body[data-theme="light"] .signal-item,
+body[data-theme="light"] .case-stat,
+body[data-theme="light"] .metric-strip span {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+body[data-theme="light"] .hero-shell,
+body[data-theme="light"] .page-hero-shell,
+body[data-theme="light"] .cta-band,
+body[data-theme="light"] .visual-frame,
+body[data-theme="light"] .story-panel,
+body[data-theme="light"] .image-panel,
+body[data-theme="light"] .proof-panel {
+  border-color: rgba(43, 69, 111, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(96, 228, 244, 0.14), transparent 26%),
+    radial-gradient(circle at bottom left, rgba(255, 154, 116, 0.12), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(247, 241, 234, 0.96));
+}
+
+body[data-theme="light"] .hero-shell::before,
+body[data-theme="light"] .page-hero-shell::before,
+body[data-theme="light"] .cta-band::before {
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.5), transparent 30%),
+    linear-gradient(180deg, transparent, rgba(24, 39, 64, 0.04));
+}
+
+body[data-theme="light"] .metric-card,
+body[data-theme="light"] .card,
+body[data-theme="light"] .process-step,
+body[data-theme="light"] .case-card,
+body[data-theme="light"] .detail-card,
+body[data-theme="light"] .contact-card,
+body[data-theme="light"] .form-shell,
+body[data-theme="light"] .quote-shell,
+body[data-theme="light"] .comparison-card,
+body[data-theme="light"] .manifesto-panel,
+body[data-theme="light"] .offer-highlight,
+body[data-theme="light"] .offer-mini,
+body[data-theme="light"] .stage-card,
+body[data-theme="light"] .service-point,
+body[data-theme="light"] .faq-item,
+body[data-theme="light"] .industry-card,
+body[data-theme="light"] .mini-proof {
+  border-color: rgba(43, 69, 111, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 243, 236, 0.94));
+}
+
+body[data-theme="light"] .hero-stage {
+  background:
+    radial-gradient(circle at top right, rgba(96, 228, 244, 0.18), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 154, 116, 0.16), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(243, 236, 228, 0.96));
+  border-color: rgba(43, 69, 111, 0.12);
+}
+
+body[data-theme="light"] .hero-stage::before {
+  border-color: rgba(43, 69, 111, 0.12);
+}
+
+body[data-theme="light"] .signal-strip {
+  border-top-color: rgba(43, 69, 111, 0.08);
+  border-bottom-color: rgba(43, 69, 111, 0.08);
+}
+
+body[data-theme="light"] .surface-dark::before {
+  border-block-color: rgba(43, 69, 111, 0.08);
+}
+
+body[data-theme="light"] .field input,
+body[data-theme="light"] .field select,
+body[data-theme="light"] .field textarea {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(43, 69, 111, 0.14);
+}
+
+body[data-theme="light"] .field input::placeholder,
+body[data-theme="light"] .field textarea::placeholder {
+  color: rgba(95, 107, 127, 0.86);
+}
+
+body[data-theme="light"] .page-services .page-hero-shell {
+  background:
+    radial-gradient(circle at 84% 20%, rgba(96, 228, 244, 0.16), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 241, 233, 0.96));
+}
+
+body[data-theme="light"] .page-process .page-hero-shell {
+  background:
+    radial-gradient(circle at 16% 20%, rgba(103, 132, 255, 0.12), transparent 22%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 241, 233, 0.96));
+}
+
+body[data-theme="light"] .page-process .page-hero-shell::before {
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.45), transparent 30%),
+    repeating-linear-gradient(90deg, rgba(24, 39, 64, 0.04) 0 1px, transparent 1px 46px);
+}
+
+body[data-theme="light"] .page-portfolio .page-hero-shell {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(247, 99, 158, 0.12), transparent 20%),
+    radial-gradient(circle at 18% 32%, rgba(96, 228, 244, 0.14), transparent 18%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 241, 233, 0.96));
+}
+
+body[data-theme="light"] .page-about .page-hero-shell {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 154, 116, 0.12), transparent 20%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 241, 233, 0.96));
+}
+
+body[data-theme="light"] .page-contact .page-hero-shell {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(103, 132, 255, 0.12), transparent 22%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 241, 233, 0.96));
+}
+
+body[data-theme="light"] .footer-shell {
+  background: linear-gradient(180deg, rgba(19, 31, 51, 0.96), rgba(10, 16, 28, 0.98));
+}
+
+body[data-theme="light"] .footer-shell .brand-name,
+body[data-theme="light"] .footer-column h3 {
+  color: #f7dfb0;
 }
 
 .reveal {
