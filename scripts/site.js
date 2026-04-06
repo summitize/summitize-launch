@@ -42,7 +42,7 @@ class SiteHeader extends HTMLElement {
             <span class="brand-mark">S</span>
             <span class="brand-copy">
               <span class="brand-name">Summitize Ventures</span>
-              <span class="brand-tag">Custom sites in 48 hours</span>
+              <span class="brand-tag">Premium sites in 48 hours</span>
             </span>
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,11 +92,11 @@ class SiteFooter extends HTMLElement {
                   <span class="brand-mark">S</span>
                   <span class="brand-copy">
                     <span class="brand-name">Summitize Ventures</span>
-                    <span class="brand-tag">Fast websites for serious businesses</span>
+                    <span class="brand-tag">Sharp launches for serious businesses</span>
                   </span>
                 </div>
                 <p style="margin-top: 1rem; max-width: 320px;">
-                  We turn offers into clear, scalable websites in a focused 48-hour sprint so your business can launch with momentum.
+                  We build premium-feeling websites in a focused 48-hour sprint so a business can show up with more confidence, edge, and credibility.
                 </p>
               </div>
               ${footerColumns
