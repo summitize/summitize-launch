@@ -89,7 +89,16 @@ class SiteHeader extends HTMLElement {
       <header class="site-header">
         <div class="nav-shell">
           <a class="brand" href="index.html" aria-label="LaunchPilot by Summitize home">
-            <img class="brand-logo" src="images/launchpilot-logo-transparent.png" alt="LaunchPilot by Summitize" />
+            <img class="brand-logo-light" src="images/launchpilot-logo-light.png" alt="" />
+            <span class="brand-lockup">
+              <span class="brand-mark" aria-hidden="true">
+                <img class="brand-icon" src="images/launchpilot-icon-transparent.png" alt="" />
+              </span>
+              <span class="brand-copy">
+                <span class="brand-name">LaunchPilot</span>
+                <span class="brand-tag">by Summitize</span>
+              </span>
+            </span>
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
             <span></span>
@@ -143,7 +152,16 @@ class SiteFooter extends HTMLElement {
             <div class="footer-grid">
               <div class="footer-column">
                 <div class="brand">
-                  <img class="brand-logo" src="images/launchpilot-logo-transparent.png" alt="LaunchPilot by Summitize" />
+                  <img class="brand-logo-light" src="images/launchpilot-logo-light.png" alt="" />
+                  <span class="brand-lockup">
+                    <span class="brand-mark" aria-hidden="true">
+                      <img class="brand-icon" src="images/launchpilot-icon-transparent.png" alt="" />
+                    </span>
+                    <span class="brand-copy">
+                      <span class="brand-name">LaunchPilot</span>
+                      <span class="brand-tag">by Summitize</span>
+                    </span>
+                  </span>
                 </div>
                 <p style="margin-top: 1rem; max-width: 320px;">
                   We help businesses, consultants, and startups launch their online presence fast using AI.
